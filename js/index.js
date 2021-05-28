@@ -56,32 +56,27 @@ const pacients = [
 ];
 
 function extraccioDades(pacients) {
-  const nPacients = pacients.length;
-  const nMayoresEdad = pacients.filter(
-    (pacients) => pacients.paciente.edad >= 18
-  ).length;
-  const nHombresDiabeticos = pacients.filter(
-    (pacients) =>
-      pacients.paciente.sexo.toLowerCase() === "h" &&
-      pacients.dieta.toLowerCase() === "diabetes"
-  ).length;
-  const totalDiasIngreso = pacients.reduce(
-    (acumulador, pacient) => pacient.diasIngresado + acumulador,
-    0
-  );
-  const mediaEdadMujeres = pacients
-    .filter((pacients) => pacients.paciente.sexo.toLowerCase() === "m")
-    .reduce(
-      (acumulador, pacient, i, pacients) =>
-        pacient.paciente.edad / pacients.length + acumulador,
-      0
-    );
   const dades = {
-    nPacients,
-    nMayoresEdad,
-    nHombresDiabeticos,
-    totalDiasIngreso,
-    mediaEdadMujeres,
+    nPacients: pacients.length,
+    nMayoresEdad: pacients.filter((pacients) => pacients.paciente.edad >= 18)
+      .length,
+    nHombresDiabeticos: pacients.filter(
+      (pacients) =>
+        pacients.paciente.sexo.toLowerCase() === "h" &&
+        pacients.dieta.toLowerCase() === "diabetes"
+    ).length,
+    totalDiasIngreso: pacients.reduce(
+      (acumulador, pacient) => pacient.diasIngresado + acumulador,
+      0
+    ),
+    mediaEdadMujeres: +pacients
+      .filter((pacients) => pacients.paciente.sexo.toLowerCase() === "m")
+      .reduce(
+        (acumulador, pacient, i, pacients) =>
+          pacient.paciente.edad / pacients.length + acumulador,
+        0
+      )
+      .toFixed(2),
   };
   return dades;
 }
