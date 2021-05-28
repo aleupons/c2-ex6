@@ -69,14 +69,13 @@ function extraccioDades(pacients) {
     (acumulador, pacient) => pacient.diasIngresado + acumulador,
     0
   );
-  const mediaEdadMujeres =
-    pacients
-      .filter((pacients) => pacients.paciente.sexo.toLowerCase() === "m")
-      .reduce(
-        (acumulador, pacient, i, pacients) =>
-          pacient.paciente.edad + acumulador,
-        0
-      ) / pacients.length;
+  const mediaEdadMujeres = pacients
+    .filter((pacients) => pacients.paciente.sexo.toLowerCase() === "m")
+    .reduce(
+      (acumulador, pacient, i, pacients) =>
+        pacient.paciente.edad / pacients.length + acumulador,
+      0
+    );
   const dades = {
     nPacients,
     nMayoresEdad,
